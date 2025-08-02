@@ -3,7 +3,6 @@ import weather.helpers
 from flask import render_template, request, Response
 from datetime import datetime, timedelta
 import requests
-import pytz
 import json
 from time import sleep
 
@@ -54,36 +53,16 @@ def getweather():
                 return "Error: Could not retrieve weather data.", 500
             sleep(0.5)
 
-    timezone_str = weather_data.get("timezone", "UTC")
     utc_offset_seconds = weather_data.get("utc_offset_seconds", 0)
 
-    utc_now = datetime.utcnow()
-
-    try:
-        target_timezone = pytz.timezone(timezone_str)
-        local_time = utc_now.replace(tzinfo=pytz.utc).astimezone(target_timezone)
-    except pytz.UnknownTimeZoneError:
-        local_time = utc_now + timedelta(seconds=utc_offset_seconds)
-    
+    now = datetime.now()
+    local_time = now + timedelta(seconds=utc_offset_seconds)
     datentime = local_time.strftime("%Y-%m-%d %I:%M:%S %p")
 
     current_weather_data = weather_data.get("current_weather", {})
     current_temp = current_weather_data.get("temperature", 23)
     current_weather_code = current_weather_data.get("weathercode", 0)
-
-    is_day_current = True
-    if "daily" in weather_data and weather_data["daily"]["time"]:
-        today_index = weather_data["daily"]["time"].index(local_time.strftime("%Y-%m-%d")) if local_time.strftime("%Y-%m-%d") in weather_data["daily"]["time"] else 0
-        sunrise_str = weather_data["daily"]["sunrise"][today_index]
-        sunset_str = weather_data["daily"]["sunset"][today_index]
-        try:
-            sunrise_time = datetime.fromisoformat(sunrise_str).astimezone(target_timezone).time()
-            sunset_time = datetime.fromisoformat(sunset_str).astimezone(target_timezone).time()
-            is_day_current = sunrise_time <= local_time.time() <= sunset_time
-        except ValueError:
-            is_day_current = 6 <= local_time.hour < 18
-
-
+    is_day_current = bool(current_weather_data.get("is_day", 1))
     current_icon, current_text = weather.helpers.get_weather_condition(current_weather_code, is_day_current)
 
     current = {
@@ -184,36 +163,16 @@ def getstaticweather():
                 return "Error: Could not retrieve weather data.", 500
             sleep(0.5)
 
-    timezone_str = weather_data.get("timezone", "UTC")
     utc_offset_seconds = weather_data.get("utc_offset_seconds", 0)
     
-    utc_now = datetime.utcnow()
-
-    try:
-        target_timezone = pytz.timezone(timezone_str)
-        local_time = utc_now.replace(tzinfo=pytz.utc).astimezone(target_timezone)
-    except pytz.UnknownTimeZoneError:
-        local_time = utc_now + timedelta(seconds=utc_offset_seconds)
-    
+    now = datetime.now()
+    local_time = now + timedelta(seconds=utc_offset_seconds)
     datentime = local_time.strftime("%Y-%m-%d %I:%M:%S %p")
 
     current_weather_data = weather_data.get("current_weather", {})
     current_temp = current_weather_data.get("temperature", 23)
     current_weather_code = current_weather_data.get("weathercode", 0)
-
-    is_day_current = True
-    if "daily" in weather_data and weather_data["daily"]["time"]:
-        today_index = weather_data["daily"]["time"].index(local_time.strftime("%Y-%m-%d")) if local_time.strftime("%Y-%m-%d") in weather_data["daily"]["time"] else 0
-        sunrise_str = weather_data["daily"]["sunrise"][today_index]
-        sunset_str = weather_data["daily"]["sunset"][today_index]
-
-        try:
-            sunrise_time = datetime.fromisoformat(sunrise_str).astimezone(target_timezone).time()
-            sunset_time = datetime.fromisoformat(sunset_str).astimezone(target_timezone).time()
-            is_day_current = sunrise_time <= local_time.time() <= sunset_time
-        except ValueError:
-            is_day_current = 6 <= local_time.hour < 18
-
+    is_day_current = bool(current_weather_data.get("is_day", 1))
     current_icon, current_text = weather.helpers.get_weather_condition(current_weather_code, is_day_current)
 
     current = {
