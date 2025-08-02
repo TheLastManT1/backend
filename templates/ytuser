@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<entry xmlns='http://www.w3.org/2005/Atom' xmlns:yt='http://{{ host }}/schemas/2007' xmlns:gd='http://schemas.google.com/g/2005'>
+    <id>http://{{ host }}/feeds/api/users/{{ username }}</id>
+    <published>{{ published }}</published>
+    <updated>{{ updated }}</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://{{ host }}/schemas/2007#user'/>
+    <title type='text'>{{ title }}</title>
+    <content type='text'>{{ description }}</content>
+    <link rel='alternate' type='text/html' href='http://www.youtube.com/user/{{ username }}'/>
+    <link rel='self' type='application/atom+xml' href='http://{{ host }}/feeds/api/users/{{ username }}'/>
+    <author>
+        <name>{{ title }}</name>
+        <uri>http://{{ host }}/feeds/api/users/{{ username }}</uri>
+    </author>
+    <yt:username>{{ username }}</yt:username>
+    <yt:firstName>{{ title }}</yt:firstName>
+    <yt:lastName></yt:lastName>
+    <yt:location>{{ country }}</yt:location>
+    <yt:statistics lastWebAccess='{{ updated }}' subscriberCount='{{ subscriberCount }}' videoWatchCount='{{ viewCount }}' viewCount='{{ viewCount }}' totalUploadViews='{{ viewCount }}'/>
+    {% if notfound %}
+    <!-- User not found -->
+    {% endif %}
+</entry>

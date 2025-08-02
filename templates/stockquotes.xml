@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <result>
+        <list count="{{ quotes|length }}">
+            {% for quote in quotes %}
+            <quote>
+                <name>{{ quote.name }}</name>
+                <symbol>{{ quote.symbol }}</symbol>
+                <timestamp>{{ quote.timestamp }}</timestamp>
+                <link>{{ quote.link }}</link>
+                <price>{{ quote.price }}</price>
+                <change>{{ quote.change.value }}</change>
+                <changepercent>{{ quote.change.percent }}</changepercent>
+                <open>{{ quote.open }}</open>
+                <high>{{ quote.high }}</high>
+                <low>{{ quote.low }}</low>
+                <volume>{{ quote.volume }}</volume>
+            </quote>
+            {% endfor %}
+        </list>
+    </result>
+</response>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weather>
+  <location name="{{ city }}" country="{{ country }}" />
+  <localTime>{{ datentime }}</localTime>
+  <current>
+    <temp c="{{ current.temp }}" f="{{ (current.temp * 9 / 5 + 32)|round(1) }}"/>
+    <condition icon="{{ current.condition.icon }}">{{ current.condition.text }}</condition>
+  </current>
+  <forecast>
+    {% for day in days %}
+    <day number="{{ loop.index }}">
+      <name>{{ day.name }}</name>
+      <date>{{ day.date }}</date>
+      <condition icon="{{ day.condition.icon }}">{{ day.condition.text }}</condition>
+      <high c="{{ day.temp.high }}" f="{{ (day.temp.high * 9 / 5 + 32)|round(1) }}" />
+      <low c="{{ day.temp.low }}" f="{{ (day.temp.low * 9 / 5 + 32)|round(1) }}" />
+      <winddir direction="{{ day.wind.direction.compass }}">{{ day.wind.direction.degrees }}</winddir>
+      <windspd kph="{{ day.wind.speed }}" mph="{{ (day.wind.speed / 1.609)|round(1) }}" mps="{{ (day.wind.speed / 3.6)|round(1) }}" />
+      <uvi>{{ day.uvi }}</uvi>
+    </day>
+    {% endfor %}
+  </forecast>
+  <copyright>2025 Open-Meteo, All Rights Reserved.</copyright>
+  <usage>HTC Pocket PC Weather Forecast</usage>
+</weather>

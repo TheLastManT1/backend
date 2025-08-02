@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <result>
+    <list count="{{ points|length }}">
+      <meta>
+        <symbol>{{ symbol.name }}</symbol>
+        <marketopen>{{ symbol.marketopen }}</marketopen>
+        <marketclose>{{ symbol.marketclose }}</marketclose>
+        <gmtoffset>{{ symbol.gmtoffset }}</gmtoffset>
+        <applicationData>{{ symbol.application_data }}</applicationData>
+      </meta>
+      {% for point in points %}
+      <point close="{{ point.close }}" timestamp="{{ point.timestamp }}" />
+      {% endfor %}
+    </list>
+  </result>
+</response>
