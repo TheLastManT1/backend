@@ -12,8 +12,8 @@ YOUTUBE_ENABLED = True
 
 # YouTube configuration
 YOUTUBE_API_KEY = "YOUR_YOUTUBE_API_KEY_HERE"
-VIDEO_LIFETIME = 3 # in days
-CLEANUP_INTERVAL = 1 # in hours
+VIDEO_LIFETIME = 3 # How long should videos be stored (in days)
+CLEANUP_INTERVAL = 1 # How often to check for expired videos (in hours)
 
 # Optional: Enable proxy support if behind a reverse proxy
 # from werkzeug.middleware.proxy_fix import ProxyFix

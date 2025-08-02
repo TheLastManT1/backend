@@ -1,0 +1,6 @@
+Flask==3.1.1
+google-api-python-client==2.177.0
+requests==2.32.4
+pytz==2025.2
+yfinance==0.2.65
+Pillow==11.3.0
