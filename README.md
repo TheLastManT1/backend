@@ -8,29 +8,24 @@ This backend, based on Flask, serves as a multi-purpose API platform. It provide
 - Create a virtual environment (optional, but highly recommended)
 - Install dependencies
 
-Here are the commands to do this in most Linux distros
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip3 install -r requirements.txt
-```
+    Here are the commands to do this in most Linux distros
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip3 install -r requirements.txt
+    ```
 
 - Open `config.py` in your favourite text editor
 - Modify the `HOST` variable to the current IP/domain of your server
 - Enable/disable components depending on your needs
-- If using the YouTube component, set a valid API key, which you can get from the Google Developers Console. I will make a nice guide on how to do this soon.
+- For YouTube functionality, obtain an API key from the [Google Developers Console](https://console.developers.google.com/)
 - Now run the server and enjoy!
+    ```bash
+    python3 app.py
+    ```
 
-```bash
-python3 app.py
-```
-
-## What else to do?
-<!-- - Check whether your device has been tested, and if yes understand what is supported. If it hasn't been tested proceed, but after you are done please create an issue/PR in the guides repo, reporting what works and what doesn't work-->
-- Configure your device to connect to the server
-
-Information on this can be found in the guides repo
+## What next?
+- [Patch your device](https://github.com/htc-remanila/resources)
 
 ## What's working?
 - [x] Weather
