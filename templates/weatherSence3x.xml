@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<adc_database xmlns="http://www.accuweather.com">
+	<units>
+		<temp>{{ units.temp }}</temp>
+		<dist>{{ units.dist }}</dist>
+		<speed>{{ units.speed }}</speed>
+		<pres>{{ units.pres }}</pres>
+		<prec>{{ units.prec }}</prec>
+	</units>
+
+	<local>
+		<city>{{ local.city }}</city>
+
+		<adminArea code="{{ local.adminArea.code }}">{{ local.adminArea.name }}</adminArea>
+		<country code="{{ local.country.code }}">{{ local.country.name }}</country>
+
+		<lat>{{ local.lat }}</lat>
+		<lon>{{ local.lon }}</lon>
+		<time>{{ local.time }}</time>
+		<timeZone>{{ local.timeZone }}</timeZone>
+		<obsDaylight>{{ local.obsDaylight }}</obsDaylight>
+		<currentGmtOffset>{{ local.currentGmtOffset }}</currentGmtOffset>
+		<timeZoneAbbreviation>{{ local.timeZoneAbbreviation }}</timeZoneAbbreviation>
+	</local>
+
+	<currentconditions daylight="{{ currentconditions.daylight }}">
+		<url>{{ currentconditions.url }}</url>
+		<observationtime>{{ currentconditions.observationtime }}</observationtime>
+		<pressure state="{{ currentconditions.pressure.state }}">{{ currentconditions.pressure.value }}</pressure>
+		<temperature>{{ currentconditions.temperature }}</temperature>
+		<realfeel>{{ currentconditions.realfeel }}</realfeel>
+		<humidity>{{ currentconditions.humidity }}</humidity>
+		<weathertext>{{ currentconditions.weathertext }}</weathertext>
+		<weathericon>{{ currentconditions.weathericon }}</weathericon>
+		<windgusts>{{ currentconditions.windgusts }}</windgusts>
+		<windspeed>{{ currentconditions.windspeed }}</windspeed>
+		<winddirection>{{ currentconditions.winddirection }}</winddirection>
+		<visibility>{{ currentconditions.visibility }}</visibility>
+		<precip>{{ currentconditions.precip }}</precip>
+		<uvindex index="{{ currentconditions.uvindex.index }}">{{ currentconditions.uvindex.text }}</uvindex>
+		<dewpoint>{{ currentconditions.dewpoint }}</dewpoint>
+		<cloudcover>{{ currentconditions.cloudcover }}</cloudcover>
+		<apparenttemp>{{ currentconditions.apparenttemp }}</apparenttemp>
+		<windchill>{{ currentconditions.windchill }}</windchill>
+	</currentconditions>
+
+	<planets>
+		<sun rise="{{ planets.sun.sunrise }}" set="{{ planets.sun.sunset }}" />
+		<moon rise="{{ planets.moon.sunrise }}" set="{{ planets.moon.sunset }}" />
+		<mercury rise="{{ planets.mercury.sunrise }}" set="{{ planets.mercury.sunset }}" />
+		<venus rise="{{ planets.venus.sunrise }}" set="{{ planets.venus.sunset }}" />
+		<mars rise="{{ planets.mars.sunrise }}" set="{{ planets.mars.sunset }}" />
+		<jupiter rise="{{ planets.jupiter.sunrise }}" set="{{ planets.jupiter.sunset }}" />
+		<saturn rise="{{ planets.saturn.sunrise }}" set="{{ planets.saturn.sunset }}" />
+		<uranus rise="{{ planets.uranus.sunrise }}" set="{{ planets.uranus.sunset }}" />
+		<neptune rise="{{ planets.neptune.sunrise }}" set="{{ planets.neptune.sunset }}" />
+		<pluto rise="{{ planets.pluto.sunrise }}" set="{{ planets.pluto.sunset }}" />
+	</planets>
+
+  <moon>
+  {% for day in moon %}
+      <phase date="{{ day.date }}" text="{{ day.text }}">{{ day.age }}</phase>
+  {% endfor %}
+  </moon>
+
+  <forecast>
+      <url>{{ forecast_url }}</url>
+
+      {% for day in forecast_days %}
+      <day number="{{ day.number }}">
+          <url>{{ day.url }}</url>
+          <obsdate>{{ day.obsdate }}</obsdate>
+          <daycode>{{ day.daycode }}</daycode>
+
+          <sunrise>{{ day.sunrise }}</sunrise>
+          <sunset>{{ day.sunset }}</sunset>
+
+          <daytime>
+              <txtshort>{{ day.day_txtshort }}</txtshort>
+              <txtlong>{{ day.day_txtlong }}</txtlong>
+              <weathericon>{{ day.day_icon }}</weathericon>
+              <hightemperature>{{ day.day_high }}</hightemperature>
+              <lowtemperature>{{ day.day_low }}</lowtemperature>
+              <realfeelhigh>{{ day.day_realfeelhigh }}</realfeelhigh>
+              <realfeellow>{{ day.day_realfeellow }}</realfeellow>
+              <windspeed>{{ day.day_windspeed }}</windspeed>
+              <winddirection>{{ day.day_winddirection }}</winddirection>
+              <windgust>{{ day.day_windgust }}</windgust>
+              <maxuv>{{ day.day_maxuv }}</maxuv>
+              <rainamount>{{ day.day_rain }}</rainamount>
+              <snowamount>{{ day.day_snow }}</snowamount>
+              <iceamount>{{ day.day_ice }}</iceamount>
+              <precipamount>{{ day.day_precip }}</precipamount>
+              <tstormprob>{{ day.day_tstormprob }}</tstormprob>
+          </daytime>
+
+          <nighttime>
+              <txtshort>{{ day.night_txtshort }}</txtshort>
+              <txtlong>{{ day.night_txtlong }}</txtlong>
+              <weathericon>{{ day.night_icon }}</weathericon>
+              <hightemperature>{{ day.night_high }}</hightemperature>
+              <lowtemperature>{{ day.night_low }}</lowtemperature>
+              <realfeelhigh>{{ day.night_realfeelhigh }}</realfeelhigh>
+              <realfeellow>{{ day.night_realfeellow }}</realfeellow>
+              <windspeed>{{ day.night_windspeed }}</windspeed>
+              <winddirection>{{ day.night_winddirection }}</winddirection>
+              <windgust>{{ day.night_windgust }}</windgust>
+              <maxuv>{{ day.night_maxuv }}</maxuv>
+              <rainamount>{{ day.night_rain }}</rainamount>
+              <snowamount>{{ day.night_snow }}</snowamount>
+              <iceamount>{{ day.night_ice }}</iceamount>
+              <precipamount>{{ day.night_precip }}</precipamount>
+              <tstormprob>{{ day.night_tstormprob }}</tstormprob>
+          </nighttime>
+      </day>
+      {% endfor %}
+
+      <hourly>
+          {% for h in forecast_hours %}
+          <hour time="{{ h.time }}">
+              <weathericon>{{ h.icon }}</weathericon>
+              <temperature>{{ h.temp }}</temperature>
+              <realfeel>{{ h.realfeel }}</realfeel>
+              <precip>{{ h.precip }}</precip>
+              <windspeed>{{ h.windspeed }}</windspeed>
+              <winddirection>{{ h.winddirection }}</winddirection>
+              <txtshort>{{ h.text }}</txtshort>
+              <obsdate>{{ h.obsdate }}</obsdate>
+              <mobileLink>{{ h.mobileLink }}</mobileLink>
+          </hour>
+          {% endfor %}
+      </hourly>
+  </forecast>
+
+
+	<copyright>Copyright {{ copyright_year }} AccuWeather.com</copyright>
+	<use>This document is intended only for use by authorized licensees of AccuWeather.com.
+		Unauthorized use is prohibited. All Rights Reserved.</use>
+	<product>{{ product }}</product>
+	<redistribution>Redistribution Prohibited.</redistribution>
+</adc_database>
