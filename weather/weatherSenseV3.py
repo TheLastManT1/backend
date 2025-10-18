@@ -1,11 +1,9 @@
 """
-officak server: http://htc2.accu-weather.com
-request url sample: http://htc2.accu-weather.com/widget/htc2/weather-data.asp?location=EUR%7CGR%7CGR020%7CIRACLION&metric=0
+Original server: http://htc2.accu-weather.com
+Archived sample: http://htc2.accu-weather.com/widget/htc2/weather-data.asp?location=EUR%7CGR%7CGR020%7CIRACLION&metric=0
 
-This should work for all sence 3.x devices
-Although many data haven't get, I tried to fake a reasonable one and it seems working fine
-It can make the whole weather system work not just widget
-Tested on HTC G11/G14 with sence 3.x
+This should work for all HTC Sense 3 devices
+Although a large amount of data is missing, I tried to fake some reasonable values and it seems working fine
 """
 from config import app
 import weather.helpers
@@ -424,3 +422,4 @@ def weather_data_htc2():
 
     response_xml = render_template("weatherSence3x.xml", **template_context)
     return Response(response_xml, mimetype="application/xml; charset=utf-8")
+
