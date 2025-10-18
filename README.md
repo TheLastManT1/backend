@@ -4,7 +4,7 @@
 This backend, based on Flask, serves as a multi-purpose API platform. It provides several services, including weather, stocks, YouTube, Twitter and Facebook. The HTC phones can connect to this API and fetch up to date information
 
 ## Setting up and running
-- Make sure your python version > 3.9, 3.11 recommend
+- Make sure your Python version is 3.9 and higher, 3.11 is recommended
 - Change directory to the project root
 - Create a virtual environment (optional, but highly recommended)
 - Install dependencies
